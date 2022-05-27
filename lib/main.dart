@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: FutureBuilder<Peliculas>(
                 future: peliculas,
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
+                  if (snapshot.hasData) {
                     return ListView(
                       //Container de películas almacenadas en la lista "results"
                       //Cada container puede ser pulsado y lleva a la página
@@ -145,12 +145,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       }).toList()
                     );
                   } else if (snapshot.hasError) {
-                    return Text(
-                      "${snapshot.error}",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    return Center(
+                      child: Text(
+                        "${snapshot.error}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     );
                   }
